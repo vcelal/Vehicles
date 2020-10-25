@@ -133,12 +133,14 @@ namespace Vehicles.Controllers
             combinedList.AddRange(otherCategories);
             combinedList.Add(updatedWeight);
             var checkList = combinedList.OrderBy(x => x.MinWeight).ToList();
-
-            for (var index = 0; index < checkList.Count; index++)
+            if (oldWeightCategory.MinWeight != updatedWeight.MinWeight || oldWeightCategory.MaxWeight != updatedWeight.MaxWeight)
             {
-                if (checkList.Count - 1 != index && checkList[index].MaxWeight != checkList[index + 1].MinWeight)
+                for (var index = 0; index < checkList.Count; index++)
                 {
-                    return BadRequest("No gaps are allowed between different categories.");
+                    if (checkList.Count - 1 != index && checkList[index].MaxWeight != checkList[index + 1].MinWeight)
+                    {
+                        return BadRequest("No gaps are allowed between different categories.");
+                    }
                 }
             }
 
