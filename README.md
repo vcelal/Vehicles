@@ -2,6 +2,7 @@
 
 Project Properties:
 Asp.Net Core 3.1, Angular 10.2.0, Bootstrap
+Node.js is required
 Database: MSSQL
 
 Summary:
