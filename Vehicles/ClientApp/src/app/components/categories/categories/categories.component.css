@@ -1,0 +1,6 @@
+th:hover {
+  color: rgb(4, 15, 36);
+}
+tr:hover {
+  background-color: darkgray;
+}
