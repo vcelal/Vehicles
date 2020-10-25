@@ -1,7 +1,7 @@
 # Vehicle Registration System
 
 Project Properties:
-Asp.Net Core 3.1, Angular 10.2.0
+Asp.Net Core 3.1, Angular 10.2.0, Bootstrap
 Database: MSSQL
 
 Summary:
