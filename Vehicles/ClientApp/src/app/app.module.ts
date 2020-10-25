@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
@@ -13,9 +13,9 @@ import { AlertmodalComponent } from "./modals/alertmodal/alertmodal.component";
 import { UpdateModalComponent } from "./modals/update/update-modal/update-modal.component";
 import { CategoriesComponent } from "./components/categories/categories/categories.component";
 import { CategoryResolver } from "./services/category-service/category.resolver";
-import { HttpErrorInterceptor } from "./services/httpinterceptor";
 import { ToastrModule } from "ngx-toastr";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { OrderByPipe } from "./services/pipes/orderby.pipe";
 
 @NgModule({
   declarations: [
@@ -26,6 +26,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     AlertmodalComponent,
     UpdateModalComponent,
     CategoriesComponent,
+    OrderByPipe,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
@@ -53,13 +54,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     ]),
   ],
 
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpErrorInterceptor,
-      multi: true,
-    },
-  ],
+  providers: [OrderByPipe],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

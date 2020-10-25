@@ -40,7 +40,7 @@ namespace Vehicles.Controllers
 
             if(weightCategory == null)
             {
-                return BadRequest("Weight category cannot be found.");
+                return BadRequest("Weight category cannot be found. Please create one.");
             }
 
             var allocatedWeightCategory = weightCategory.Id;
@@ -98,25 +98,34 @@ namespace Vehicles.Controllers
                 return BadRequest("Invalid request");
             }
 
-            var vehicleDetails = _db.VehicleDetails.Where(vd => vd.Id == vehicle.Id).FirstOrDefault();
-
-            vehicleDetails.OwnerName = vehicle.OwnerName;
-            vehicleDetails.VehicleWeight = vehicle.VehicleWeight;
-            vehicleDetails.ManufacturerId = vehicle.ManufacturerId;
-            vehicleDetails.ManufactureYear = vehicle.ManufactureYear;
-
-            var weightCategory = _db.WeightCategories.Where(w => w.MinWeight < vehicle.VehicleWeight && w.MaxWeight >= vehicle.VehicleWeight).FirstOrDefault();
-
-            if (weightCategory == null)
+            try
             {
-                return BadRequest("Weight category cannot be found.");
+                var vehicleDetails = _db.VehicleDetails.Where(vd => vd.Id == vehicle.Id).FirstOrDefault();
+
+                vehicleDetails.OwnerName = vehicle.OwnerName;
+                vehicleDetails.VehicleWeight = vehicle.VehicleWeight;
+                vehicleDetails.ManufacturerId = vehicle.ManufacturerId;
+                vehicleDetails.ManufactureYear = vehicle.ManufactureYear;
+
+                var weightCategory = _db.WeightCategories.Where(w => w.MinWeight < vehicle.VehicleWeight && w.MaxWeight >= vehicle.VehicleWeight).FirstOrDefault();
+
+                if (weightCategory == null)
+                {
+                    return BadRequest("Weight category cannot be found.");
+                }
+
+                var allocatedWeightCategory = weightCategory.Id;
+                vehicleDetails.CategoryId = allocatedWeightCategory;
+
+                _db.VehicleDetails.Update(vehicleDetails);
+                await _db.SaveChangesAsync();
             }
+            catch (System.Exception)
+            {
 
-            var allocatedWeightCategory = weightCategory.Id;
-            vehicleDetails.CategoryId = allocatedWeightCategory;
-
-            _db.VehicleDetails.Update(vehicleDetails);
-            await _db.SaveChangesAsync();
+                return BadRequest("Something went wrong");
+            }
+            
 
             return Ok();
         }

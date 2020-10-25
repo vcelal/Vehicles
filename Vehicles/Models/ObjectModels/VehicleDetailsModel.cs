@@ -10,6 +10,8 @@ namespace Vehicles.Models.ObjectModels
 
         public int ManufactureYear { get; set; }
 
+        public string ManufacturerName { get; set; }
+
         public int ManufacturerId { get; set; }
 
         public double VehicleWeight { get; set; }
@@ -25,7 +27,8 @@ namespace Vehicles.Models.ObjectModels
                 Id = v.Id,
                 OwnerName = v.OwnerName,
                 ManufactureYear = v.ManufactureYear,
-                VehicleWeight = v.VehicleWeight, 
+                VehicleWeight = v.VehicleWeight,
+                ManufacturerName = v.ManufacturerDetails.Name,
                 Manufacturer = (ManufacturerModel)v.ManufacturerDetails,
                 WeightCategory = (WeightCategoryModel)v.Category
 

@@ -11,33 +11,81 @@
     </tr>
   </thead>
   <tbody>
-
     <tr *ngFor="let category of categories">
-      <th scope="row" >{{category.id}}</th>
-      <th scope="row" >{{category.name}}</th>
-      <th scope="row" >{{category.minWeight}}</th>
-      <th scope="row" >{{category.maxWeight}}</th>
-      <th scope="row" >
-
-        <i *ngIf="category.iconId === 1" class="fa fa-automobile" aria-hidden="true"></i>
-        <i *ngIf="category.iconId === 2" class="fa fa-motorcycle" aria-hidden="true"></i>
-        <i *ngIf="category.iconId === 3" class="fa fa-bus" aria-hidden="true"></i>
-        <i *ngIf="category.iconId === 4" class="fa  fa-truck" aria-hidden="true"></i>
-    
-    </th>
+      <th scope="row">{{ category.id }}</th>
+      <th scope="row">{{ category.name }}</th>
+      <th scope="row">{{ category.minWeight }}</th>
+      <th scope="row">{{ category.maxWeight }}</th>
+      <th scope="row">
+        <i
+          *ngIf="category.iconId === 1"
+          class="fa fa-automobile"
+          aria-hidden="true"
+        ></i>
+        <i
+          *ngIf="category.iconId === 2"
+          class="fa fa-motorcycle"
+          aria-hidden="true"
+        ></i>
+        <i
+          *ngIf="category.iconId === 3"
+          class="fa fa-bus"
+          aria-hidden="true"
+        ></i>
+        <i
+          *ngIf="category.iconId === 4"
+          class="fa fa-truck"
+          aria-hidden="true"
+        ></i>
+      </th>
 
       <th>
-        <button (click)="edit(category)" data-target="#exampleModal" color="primary" type="button" class="btn btn-info" aria-label="Left Align">
-          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pen" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
+        <button
+          (click)="edit(category)"
+          data-target="#exampleModal"
+          color="primary"
+          type="button"
+          class="btn btn-info"
+          aria-label="Left Align"
+        >
+          <svg
+            width="1em"
+            height="1em"
+            viewBox="0 0 16 16"
+            class="bi bi-pen"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"
+            />
           </svg>
         </button>
       </th>
       <th>
-        <button (click)= "removeCategory(category)" color="primary" type="button" class="btn btn-info" aria-label="Left Align">
-          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+        <button
+          (click)="removeCategory(category)"
+          color="primary"
+          type="button"
+          class="btn btn-info"
+          aria-label="Left Align"
+        >
+          <svg
+            width="1em"
+            height="1em"
+            viewBox="0 0 16 16"
+            class="bi bi-trash"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+            />
+            <path
+              fill-rule="evenodd"
+              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+            />
           </svg>
         </button>
       </th>
@@ -48,101 +96,146 @@
   </tbody>
 </table>
 <div class="text-center">
- 
-  <button (click)="addButtonClick()"color="primary" type="button" class="btn btn-info" aria-label="Left Align">
-    <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
-    </svg> Add More
+  <button
+    (click)="addButtonClick()"
+    color="primary"
+    type="button"
+    class="btn btn-info"
+    aria-label="Left Align"
+  >
+    <svg
+      width="2em"
+      height="2em"
+      viewBox="0 0 16 16"
+      class="bi bi-plus-circle-fill"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"
+      />
+    </svg>
+    Add More
   </button>
 </div>
 
-<form
-[formGroup]="categoryForm"
->
-<table id="addTable" class="table table-borderless table-dark">
-  <h3 class="text-center">{{add? 'Add Category Details':  'Update Category Details'}}</h3>
+<form [formGroup]="categoryForm">
+  <table
+    id="addTable"
+    style="display: none"
+    class="table table-borderless table-dark"
+  >
+    <h3 class="text-center">
+      {{ add ? "Add Category Details" : "Update Category Details" }}
+    </h3>
 
-  <thead>
-    <tr>
+    <thead>
+      <tr>
         <th scope="col">Id</th>
         <th scope="col">Name</th>
         <th scope="col">Minimum Weight</th>
         <th scope="col">Maximum Weight</th>
         <th scope="col">Icon</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th></th>
+        <th scope="row">
+          <input
+            type="text"
+            placeholder="Category Name"
+            formControlName="categoryName"
+            required
+          />
+          <tr
+            *ngIf="
+              categoryName.invalid &&
+              (categoryName.dirty || categoryName.touched)
+            "
+          >
+            <label *ngIf="categoryName.errors.required">
+              Name is required.
+            </label>
+            <label *ngIf="categoryName.errors.minlength">
+              Minimum 2 characters are allowed.
+            </label>
+            <label *ngIf="categoryName.errors.maxlength">
+              Up to 20 characters are allowed.
+            </label>
+            <label *ngIf="categoryName.errors.pattern"> Invalid name. </label>
+          </tr>
+        </th>
 
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th></th>
-      <th scope="row"><input type="text" placeholder="Category Name" formControlName="categoryName" required/>
-        <tr
-        *ngIf="categoryName.invalid && (categoryName.dirty || categoryName.touched)"
-      >
-        <label *ngIf="categoryName.errors.required">
-          Name is required.
-        </label>
-        <label *ngIf="categoryName.errors.minlength">
-          Minimum 2 characters are allowed.
-        </label>
-        <label *ngIf="categoryName.errors.maxlength">
-          Up to 20 characters are allowed.
-        </label>
-        <label *ngIf="categoryName.errors.pattern">
-          Invalid name.
-        </label>
-        </tr>
-     </th>
+        <th scope="row">
+          <input
+            type="number"
+            placeholder="Minimum Weight"
+            formControlName="minWeight"
+            required
+          />
+          <tr
+            *ngIf="minWeight.invalid && (minWeight.dirty || minWeight.touched)"
+          >
+            <label *ngIf="minWeight.errors.required">
+              Minimum weight is required.
+            </label>
+            <label *ngIf="minWeight.errors.pattern"> Invalid weight. </label>
+          </tr>
+        </th>
+        <th scope="row">
+          <input
+            type="number"
+            placeholder="Maximum Weight"
+            formControlName="maxWeight"
+            required
+          />
+          <tr
+            *ngIf="maxWeight.invalid && (maxWeight.dirty || maxWeight.touched)"
+          >
+            <label *ngIf="maxWeight.errors.required">
+              Maximum weight is required.
+            </label>
+            <label *ngIf="maxWeight.errors.pattern"> Invalid weight. </label>
+          </tr>
+        </th>
 
-     <th scope="row"><input type="number" placeholder="Minimum Weight" formControlName="minWeight" required/>
-        <tr
-        *ngIf="minWeight.invalid && (minWeight.dirty || minWeight.touched)"
-      >
-        <label *ngIf="minWeight.errors.required">
-          Minimum weight is required.
-        </label>
-        <label *ngIf="minWeight.errors.pattern">
-            Invalid weight.
-          </label>
-        </tr>
-     </th>
-     <th scope="row"><input type="number" placeholder="Maximum Weight" formControlName="maxWeight" required/>
-        <tr
-        *ngIf="maxWeight.invalid && (maxWeight.dirty || maxWeight.touched)"
-      >
-        <label *ngIf="maxWeight.errors.required">
-          Maximum weight is required.
-        </label>
-        <label *ngIf="maxWeight.errors.pattern">
-            Invalid weight.
-          </label>
-        </tr>
-     </th>
-        
-      <th>
-        <select class="fa" required formControlName="iconId">
+        <th>
+          <select class="fa" required formControlName="iconId">
             <option value="1">&#xf1b9;</option>
             <option value="2">&#xf21c;</option>
             <option value="3">&#xf207;</option>
             <option value="4">&#xf0d1;</option>
-        </select>
-        <tr
-        *ngIf="iconId.invalid && (iconId.dirty || iconId.touched)"
+          </select>
+          <tr *ngIf="iconId.invalid && (iconId.dirty || iconId.touched)">
+            <label *ngIf="iconId.errors.required"> Icon is required. </label>
+          </tr>
+        </th>
+      </tr>
+    </tbody>
+    <button
+      [disabled]="categoryForm.invalid"
+      (click)="submitAdd()"
+      color="primary"
+      type="button"
+      class="btn btn-info"
+      aria-label="Left Align"
+    >
+      <svg
+        width="2em"
+        height="2em"
+        viewBox="0 0 16 16"
+        class="bi bi-plus-circle-fill"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <label *ngIf="iconId.errors.required">
-          Icon is required.
-        </label>
-        </tr>
-      </th>
-    </tr>
-
-  </tbody>
-  <button [disabled]="categoryForm.invalid" (click)="submitAdd()"color="primary" type="button" class="btn btn-info" aria-label="Left Align">
-    <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
-    </svg> {{add? 'Add': 'Update' }}
-  </button>
-
-</table>
-
+        <path
+          fill-rule="evenodd"
+          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"
+        />
+      </svg>
+      {{ add ? "Add" : "Update" }}
+    </button>
+  </table>
 </form>

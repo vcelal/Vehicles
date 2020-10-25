@@ -7,6 +7,8 @@ import {
 } from "../../interfaces/vehicle.model";
 import { ManufacturerService } from "src/app/services/manufacturer-service/manufacturer.service";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { ToastrService } from "ngx-toastr";
+import { OrderByPipe } from "src/app/services/pipes/orderby.pipe";
 
 @Component({
   selector: "app-list-vehicle",
@@ -17,16 +19,20 @@ export class ListVehicleComponent implements OnInit {
   vehicles: Array<VehicleDetailsModel>;
   vehicleDetails: VehicleDetailsModel;
   manufacturers: Array<ManufacturerModel>;
+  tableHeaders: Array<any>;
   vehicleForm: FormGroup;
   vId: number;
   add = false;
+  key: string = "id";
+  reverse: boolean = false;
 
   constructor(
     private vehicleService: VehicleService,
     private activatedRoute: ActivatedRoute,
-    private manufacturerService: ManufacturerService
+    private manufacturerService: ManufacturerService,
+    private toastr: ToastrService,
+    private orderBy: OrderByPipe
   ) {}
-
   ngOnInit(): void {
     var x = document.getElementById("addTable");
     x.style.display = "none";
@@ -39,7 +45,7 @@ export class ListVehicleComponent implements OnInit {
         this.manufacturers = data;
       },
       (error) => {
-        console.log("An error occured");
+        this.toastr.error(error.error);
       }
     );
     this.defineVehicleObj();
@@ -79,7 +85,13 @@ export class ListVehicleComponent implements OnInit {
   get manufactureYear() {
     return this.vehicleForm.get("manufactureYear");
   }
-
+  refreshVehicleDetails() {
+    this.vehicleService
+      .listVehicles()
+      .subscribe((data: Array<VehicleDetailsModel>) => {
+        this.vehicles = data;
+      });
+  }
   submitAdd() {
     // stop here if the form is invalid
     if (this.vehicleForm.invalid) {
@@ -96,29 +108,32 @@ export class ListVehicleComponent implements OnInit {
     if (this.add) {
       this.vehicleService.addVehicleDetails(this.vehicleDetails).subscribe(
         (vehicleDetails: VehicleDetailsModel) => {
+          console.log("SUBMIT");
           this.vehicles.push(vehicleDetails);
+          this.refreshVehicleDetails();
           this.vehicleForm.reset();
         },
-        (error) => console.log("error")
+        (error) => {
+          this.toastr.error(error.error);
+        }
       );
     } else {
       this.vehicleService.updateVehicleDetails(this.vehicleDetails).subscribe(
         () => {
-          this.vehicleService.listVehicles().subscribe(
-            (data: Array<VehicleDetailsModel>) => {
-              this.vehicles = data;
-              this.vehicleForm.reset();
-            },
-            (error) => {
-              console.log("error");
-            }
-          );
+          this.refreshVehicleDetails();
+          this.vehicleForm.reset();
         },
         (error) => {
-          console.log("error");
+          this.toastr.error(error.error);
         }
       );
     }
+  }
+
+  sort(key) {
+    console.log(key);
+    this.key = key;
+    this.reverse = !this.reverse;
   }
 
   iconClass(vehicle: VehicleDetailsModel): string {
@@ -157,11 +172,11 @@ export class ListVehicleComponent implements OnInit {
     if (remove) {
       this.vehicleService.removeVehicle(vehicle.id).subscribe(
         () => {
-          let index = this.vehicles.indexOf(vehicle);
-          this.vehicles.splice(index, 1);
+          this.refreshVehicleDetails();
+          this.vehicleForm.reset();
         },
         (error) => {
-          console.log("An error occured");
+          this.toastr.error(error.error);
         }
       );
     }
